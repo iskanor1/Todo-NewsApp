@@ -60,16 +60,16 @@ class NewCubit extends Cubit<NewsStates> {
     emit(NewsLoadingState());
 
     DioHelper.getData(
-      url: 'newsdata.io/api/1/latest',
+      url: 'api/1/latest',
       query: {
         'country': 'eg',
         'category': 'business',
-        'apikey ': '65f7f556ec76449fa7dc7c0069f040ca',
+        'apikey ': 'pub_711959df19a68ad4832dffa5c10dc10859e3f',
       },
     ).then((value) {
-      if (value.data != null && value.data['articles'] != null) {
+      if (value.data != null && value.data['results'] != null) {
         // Cast the data to List<Map<dynamic, dynamic>>
-        business = List<Map<dynamic, dynamic>>.from(value.data['articles']);
+        business = List<Map<dynamic, dynamic>>.from(value.data['results']);
         print(business[0]['title']);
         emit(NewsBusinessSuccessState());
       } else {
@@ -86,16 +86,16 @@ class NewCubit extends Cubit<NewsStates> {
 
     if (sports.isEmpty) {
       DioHelper.getData(
-        url: 'v2/top-headlines',
-        query: {
-          'country': 'eg',
-          'category': 'sports',
-          'apiKey': '65f7f556ec76449fa7dc7c0069f040ca',
-        },
+          url: 'api/1/latest',
+          query: {
+            'country': 'eg',
+            'category': 'sports',
+            'apikey ': 'pub_711959df19a68ad4832dffa5c10dc10859e3f',
+          },
       ).then((value) {
-        if (value.data != null && value.data['articles'] != null) {
+        if (value.data != null && value.data['results'] != null) {
           // Cast the data to List<Map<dynamic, dynamic>>
-          sports = List<Map<dynamic, dynamic>>.from(value.data['articles']);
+          sports = List<Map<dynamic, dynamic>>.from(value.data['results']);
           print(sports[0]['title']);
           emit(NewsSportsSuccessState());
         } else {
@@ -115,16 +115,16 @@ class NewCubit extends Cubit<NewsStates> {
 
     if (science.isEmpty) {
       DioHelper.getData(
-        url: 'v2/top-headlines',
-        query: {
-          'country': 'eg',
-          'category': 'science',
-          'apiKey': '65f7f556ec76449fa7dc7c0069f040ca',
-        },
+          url: 'api/1/latest',
+          query: {
+            'country': 'eg',
+            'category': 'science',
+            'apikey ': 'pub_711959df19a68ad4832dffa5c10dc10859e3f',
+          },
       ).then((value) {
-        if (value.data != null && value.data['articles'] != null) {
+        if (value.data != null && value.data['results'] != null) {
           // Cast the data to List<Map<dynamic, dynamic>>
-          science = List<Map<dynamic, dynamic>>.from(value.data['articles']);
+          science = List<Map<dynamic, dynamic>>.from(value.data['results']);
           print(science[0]['title']);
           emit(NewsScienceSuccessState());
         } else {

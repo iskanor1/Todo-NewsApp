@@ -179,55 +179,58 @@ Widget myDivider() => Padding(
   ),
 );
 
-Widget buildArticleItem(Map article, BuildContext context) => Padding(
-  padding: const EdgeInsets.all(20.0),
-  child: Row(
-    children: [
-      Container(
-        width: 120.0,
-        height: 120.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: DecorationImage(
-            image: NetworkImage('${article['urlToImage']}'),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      const SizedBox(
-        width: 20.0,
-      ),
-      Expanded(
-        child: Container(
+Widget buildArticleItem(Map article, BuildContext context) {
+  print('${article['image_url']}');
+  return Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Row(
+      children: [
+        Container(
+          width: 120.0,
           height: 120.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  '${article['title']}',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              Text(
-                '${article['publishedAt']}',
-                style: const TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-            ],
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: NetworkImage('${article['image_url']}'), // Use NetworkImage here
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-      ),
-      const SizedBox(
-        width: 15.0,
-      ),
-    ],
-  ),
-);
+        const SizedBox(
+          width: 20.0,
+        ),
+        Expanded(
+          child: Container(
+            height: 120.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    '${article['title']}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Text(
+                  '${article['pubDate']}',
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 15.0,
+        ),
+      ],
+    ),
+  );
+}
 
 Widget articleBuilder(List<Map> list, BuildContext context) => ConditionalBuilder(
   condition: list.isNotEmpty,

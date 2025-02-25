@@ -1,10 +1,3 @@
 
-// POST
-// UPDATE
-// DELETE
 
-// GET
-
-// base url : https://newsapi.org/
-// method (url) : v2/top-headlines?
-// queries : country=eg&category=business&apiKey=65f7f556ec76449fa7dc7c0069f040ca
+//https://newsdata.io/api/1/latest?apikey=pub_711959df19a68ad4832dffa5c10dc10859e3f&category=sports&country=eg

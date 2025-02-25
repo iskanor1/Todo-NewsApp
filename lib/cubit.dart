@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_app/news_app/network/local/cach_helper.dart';
 import 'package:new_app/todo_app/modulesss/archived_tasks/archived_tasks_screen.dart';
 import 'package:new_app/todo_app/modulesss/done_tasks/done_tasks_screen.dart';
 import 'package:new_app/todo_app/modulesss/newtasks/new_tasks_screen.dart';
@@ -172,7 +173,10 @@ class AppCubit extends Cubit<AppStates> {
   bool isDark = false;
 
   void changeAppMode() {
-    isDark = !isDark;
-    emit(AppChangeModeState());
+    isDark = !isDark; // Toggle the theme mode
+    CacheHelper.putData(key: 'isDark', value: isDark).then((value) {
+      // Handle the result of the Future
+      emit(AppChangeModeState()); // Emit the state change
+    });
   }
 }

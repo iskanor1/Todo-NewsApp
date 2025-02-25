@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:new_app/todo_app/shareded/cubit/states.dart'; // Ensure this path is correct
+import 'package:new_app/news_app/network/local/cach_helper.dart';
+import 'package:new_app/todo_app/shareded/cubit/states.dart';
 import 'cubit.dart';
 import 'news_app/bloc_ob/bloc_ob.dart';
 import 'news_app/layout/news_app_layout.dart';
 import 'news_app/network/remote/dio_helper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
+  await CacheHelper.init();
+  //bool isDark =CacheHelper.getBoolean(key: 'isDark');
 
   runApp(MyApp());
 }
